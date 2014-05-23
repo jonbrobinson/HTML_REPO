@@ -7,7 +7,6 @@
 	<?php
 		echo "<h4>GET</h4>";
 		var_dump($_GET);
-		echo "<br><br>";
 		echo "<h4>POST</h4>";
 		var_dump($_POST);
 	?>
@@ -51,9 +50,6 @@
 	        <button type="submit">Send</button>
 	    </p>
 	</form>
-
-</body>
-</html>
 	<form>
 		<h3>Multiple Choice Test</h3>
 			<p>Who will win the NBA Championship?</p>
@@ -94,7 +90,27 @@
 					Mercedes
 				</label>
 			</p>
+			<label for="brand">What is the Best Clothing Brand<label>
+				<select id="brand" name="brand" multiple>
+					<option value="1">Adidas</option>
+					<option value="2">Converse</option>
+					<option value="3">Nike</option>
+					<option value="4">Reebok</option>
+				</select>
 			<p>
 	        	<button type="submit">Submit</button>
 	    	</p>
 	</form>
+	<form>
+		<h3>Select Testing</h3>
+		<label for="simple">Do you have a dog?</label>
+			<select id="simple" name="Y/N">
+				<option value="yes">Yes</option>
+				<option value="no">NO</option>
+			</select>
+		<p>
+        	<button type="submit">Submit</button>
+    	</p>
+	</form>
+</body>
+</html>
