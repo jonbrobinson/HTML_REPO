@@ -16,24 +16,25 @@
 
 		var message = (color == favorite) ? 'Cool. Violet All Day' : 'Good choice but not as great as violet';
 
-		console.log('The Comp picked ' + color + ',I picked ' + favorite + '.');
-		console.log(message);
+		// console.log('The Comp picked ' + color + ',I picked ' + favorite + '.');
+		// console.log(message);
 
-		// if (color == 'red'){
-		// 	console.log('Red is a Power Color');
-		// } else if (color == 'orange') {
-		// 	console.log('Orange helps you think of the fruit rather than color')
-		// } else if (color == 'yellow'){
-		// 	console.log('All I can do is think of bananas');
-		// } else if (color == 'green'){
-		// 	console.log('Do you remember that movie "The Big Green"?');
-		// } else if (color == 'blue'){
-		// 	console.log('Blue as the ocean');
-		// } else if (color == 'indigo' || color == 'violet'){
-		// 	console.log('This colors represent a hipster name');
-		// } else {
-		// 	console.log('I do not know anything about that color.')
-		// }
+		switch (color) {
+			case 'red':
+				console.log('Orange helps you think of the fruit rather than color');
+				break;
+			case 'yellow':
+				console.log('All I can do is think of bananas');
+				break;
+			case 'green':
+				console.log('Do you remember that movie "The Big Green"?');
+				break;
+			case 'blue':
+				console.log('Blue as the ocean');
+				break;
+			default:
+				console.log('I do not know anything about that color.')
+		}
 
 		</script>
 </body>
