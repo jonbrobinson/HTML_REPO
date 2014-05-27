@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title></title>
+	<title>break_continue_js.html</title>
 </head>
 <body>
 	<script type="text/javascript">
@@ -9,13 +9,12 @@
 			skip = Math.floor((Math.random()*50)+1);
 		}
 		console.log(skip);
-		for (var i = 1; i < 50; i++){
-			if (i %2 != 0 && i == skip){
+		for (var i = 1; i < 50; i += 2){
+			if (i == skip){
 				console.log('Woops...Skipping ' + skip);
-			} else if (i % 2 != 0){
-				console.log('Here is an odd numer: ' + i);
+				continue;
 			}
-
+			console.log('Here is an odd numer: ' + i);
 		}
 	</script>
 </body>
