@@ -1,0 +1,22 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		var skip = Math.floor((Math.random()*50)+1);
+		while(skip % 2 == 0){
+			skip = Math.floor((Math.random()*50)+1);
+		}
+		console.log(skip);
+		for (var i = 1; i < 50; i++){
+			if (i %2 != 0 && i == skip){
+				console.log('Woops...Skipping ' + skip);
+			} else if (i % 2 != 0){
+				console.log('Here is an odd numer: ' + i);
+			}
+
+		}
+	</script>
+</body>
+</html>
