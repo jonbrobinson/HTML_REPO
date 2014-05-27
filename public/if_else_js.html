@@ -1,0 +1,40 @@
+<html>
+<head>
+	<title>if_else_js.html</title>
+</head>
+<body>
+	<h1>Check out my Javascript</h1>
+	<p>Look in my inspector element</p>
+	<form>
+	</form>
+		<script type="text/javascript">
+
+		var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+		var color = colors[Math.floor(Math.random()*colors.length)];
+
+		var favorite = 'violet'; // todo, change this to your favorite color from the list
+
+		var message = (color == favorite) ? 'Cool. Violet All Day' : 'Good choice but not as great as violet';
+
+		// console.log('The Comp picked ' + color + ',I picked ' + favorite + '.');
+		// console.log(message);
+
+		if (color == 'red'){
+			console.log('Red is a Power Color');
+		} else if (color == 'orange') {
+			console.log('Orange helps you think of the fruit rather than color')
+		} else if (color == 'yellow'){
+			console.log('All I can do is think of bananas');
+		} else if (color == 'green'){
+			console.log('Do you remember that movie "The Big Green"?');
+		} else if (color == 'blue'){
+			console.log('Blue as the ocean');
+		} else if (color == 'indigo' || color == 'violet'){
+			console.log('This colors represent a hipster name');
+		} else {
+			console.log('I do not know anything about that color.')
+		}
+
+		</script>
+</body>
+</html>
