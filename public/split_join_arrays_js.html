@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title>split_join_arrays_js.html</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// todo:
+		// Copy the array of planets you created in the last lesson.
+		var planets = ['Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
+
+		// todo: Join the planets array with pipes (|) to create a variable named 'planetsAsString'.
+		var planetsAsString = planets.join(" and ");
+		console.log(planetsAsString);
+
+		// todo: Split the 'planetsAsString' variable by pipes (|) to create a variable named 'planetsAsArray'.
+		var planetsAsString = planets.join("|");
+		var planetsAsArray = planetsAsString.split('|');
+		console.log(planetsAsArray);
+	</script>
+</body>
+</html>
