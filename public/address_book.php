@@ -22,7 +22,6 @@ if(!empty($_POST)){
 		if(empty($new_address[5])){
 			$new_address[5] = "N/A";
 		}
-
 		$address_book[] = $new_address;
 		$ads->write_address_book($address_book);
 	} else{
@@ -84,23 +83,23 @@ if(!empty($_GET)){
 	<form method="POST">
 		<p>
 			<label for="name">Name</label>
-			<input id="name" name="name" type="text" placeholder="Required">
+			<input id="name" name="name" type="text" placeholder="Required" value= '<?= !empty($_POST['name'])? $_POST['name']: "" ;?>'>
 		</p>
 		<p>
 			<label for="address">Address</label>
-			<input id="address" name="address" type="text" placeholder="Required">
+			<input id="address" name="address" type="text" placeholder="Required" value= '<?= !empty($_POST['address'])? $_POST['address']: "" ;?>'>
 		</p>
 		<p>
 			<label for="city">City</label>
-			<input id="city" name="city" type="text" placeholder="Required">
+			<input id="city" name="city" type="text" placeholder="Required" value= '<?= !empty($_POST['city'])? $_POST['city']: "" ;?>'>
 		</p>
 		<p>
 			<label for="state">State</label>
-			<input id="state" name="state" type="text" placeholder="Required">
+			<input id="state" name="state" type="text" placeholder="Required" value= '<?= !empty($_POST['state'])? $_POST['state']: "" ;?>'>
 		</p>
 		<p>
 			<label for="zipcode">Zipcode</label>
-			<input id="zipcode" name="zipcode" type="text" placeholder="Required">
+			<input id="zipcode" name="zipcode" type="text" placeholder="Required" value= '<?= !empty($_POST['zipcode'])? $_POST['zipcode']: "" ;?>'>
 		</p>
 		<p>
 			<label for="phone">Phone</label>
