@@ -3,7 +3,7 @@
 $address_book = [];
 $error_message = '';
 
-include('classes/address_data_store.php');
+require_once('classes/address_data_store.php');
 
 $ads = new AddressDataStore('address_book.csv');
 
@@ -11,13 +11,18 @@ $address_book = $ads->read_address_book();
 
 if(!empty($_POST)){
 	if(!empty($_POST['name'])&& !empty($_POST['address'])&& !empty($_POST['city'])&& !empty($_POST['state'])&& !empty($_POST['zipcode'])){
-		$new_address = [];
-		foreach ($_POST as $value) {
-			$new_address[] = $value;
-		}
+		$new_address = [
+			$_POST['name'],
+			$_POST['address'],
+			$_POST['city'],
+			$_POST['state'],
+			$_POST['zipcode'],
+			$_POST['phone']
+		];
 		if(empty($new_address[5])){
 			$new_address[5] = "N/A";
 		}
+
 		$address_book[] = $new_address;
 		$ads->write_address_book($address_book);
 	} else{
