@@ -1,52 +1,73 @@
 <?php
-	var_dump($_POST);
 
-	$address_book = [];
+$address_book = [];
+$errorMessage = "";
 
-	$famous_address = [
-	    ['The White House', '1600 Pennsylvania Avenue NW', 'Washington', 'DC', '20500'],
-	    ['Marvel Comics', 'P.O. Box 1527', 'Long Island City', 'NY', '11101'],
-	    ['LucasArts', 'P.O. Box 29901', 'San Francisco', 'CA', '94129-0901']
-	];
+class AddressDataStore {
 
-	$address_book = array_merge($address_book,$famous_address);
+    public $filename = '';
 
-	$filename = "address_book.csv";
+    public function __construct($filename){
+    	$this->filename = $filename;
+    }
 
-	function write_csv($big_array,$filename){
-		$handle = fopen($filename, 'w');
-			foreach ($big_array as $fields){
-				fputcsv($handle,$fields);
+    public function read_address_book()
+    {
+        // Code to read file $this->filename
+		$address_book = [];
+		$handle = fopen($this->filename, 'r');
+		while(!feof($handle)){
+			$row = fgetcsv($handle);
+			if(is_array($row)){
+				$address_book[] = $row;
 			}
-			fclose($handle);
-	}
-
-	$isValid = false;
-	if(!empty($_POST['name'])&& !empty($_POST['address'])&& !empty($_POST['city'])&& !empty($_POST['state'])&& !empty($_POST['zipcode'])){
-		$isValid = true;
-		if(!empty($_POST['phone'])){
-			$new_address = [];
-			foreach ($_POST as $value) {
-			$new_address[] = $value;
-			}
-			array_push($address_book,$new_address);
-		} else {
-			$new_address = [];
-			foreach ($_POST as $value) {
-			$new_address[] = $value;
-			}
-			array_pop($new_address);
-			array_push($address_book,$new_address);
 		}
+		fclose($handle);
+		return $address_book;
 	}
-	write_csv ($address_book,$filename);
+
+    public function write_address_book($contacts){
+    
+        $handle = fopen($this->filename, 'w');
+		foreach ($contacts as $fields){
+			fputcsv($handle,$fields);
+		}
+		fclose($handle);
+    }
+
+}
+
+$ads = new AddressDataStore('address_book.csv');
+
+$address_book = $ads->read_address_book();
+
+if(!empty($_POST)){
+	if(!empty($_POST['name'])&& !empty($_POST['address'])&& !empty($_POST['city'])&& !empty($_POST['state'])&& !empty($_POST['zipcode'])){
+		$new_address = [];
+		foreach ($_POST as $value) {
+			$new_address[] = $value;
+		}
+		if(empty($new_address[5])){
+			$new_address[5] = "N/A";
+		}
+		$address_book[] = $new_address;
+		$ads->write_address_book($address_book);
+	} else{
+		$error_message = "Error: Please Complete All Required fields";
+	}
+}
 
 ?>
+
 <html>
 <head>
 	<title>Address_Book</title>
 </head>
 <body>
+	<h1>Address Book</h1>
+	<? if ((!empty($error_message))) :?>
+		<h2><?= $error_message; ?></h2>
+	<? endif; ?>
 	<table border="1">
 			<tr>
 				<th>Name</th>
@@ -56,17 +77,14 @@
 				<th>Zipcode</th>
 				<th>Phone</th>
 			</tr>
-			<? foreach ($address_book as $fields) :?>
-			<tr>
-				<? foreach ($fields as $values) :?>
-				<td><?= $values; ?></td>
-				<? endforeach; ?>
-			</tr>
+			<? foreach ($address_book as $key => $rows) :?>
+				<tr>
+					<? foreach ($rows as $column) :?>
+						 <td><?= htmlspecialchars($column); ?></td>
+					<? endforeach; ?>
+				</tr>
 			<? endforeach; ?>
 	</table>
-	<? if ((!$isValid) && (!empty($_POST))) :?>
-	<h2>Error: Please enter Required fields</h2>
-	<? endif; ?>
 	<form method="POST">
 		<p>
 			<label for="name">Name</label>
