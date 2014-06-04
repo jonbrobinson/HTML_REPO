@@ -27,7 +27,7 @@ class AddressDataStore {
 	}
 
     public function write_address_book($contacts){
-    
+
         $handle = fopen($this->filename, 'w');
 		foreach ($contacts as $fields){
 			fputcsv($handle,$fields);
@@ -55,6 +55,21 @@ if(!empty($_POST)){
 	} else{
 		$error_message = "Error: Please Complete All Required fields";
 	}
+}
+if (count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
+
+    if ($_FILES['file1']["type"] != "text/csv") {
+        echo "ERROR: file must be in text/csv!";
+    } else {
+        $upload_dir = '/vagrant/sites/codeup.dev/public/uploads/';
+        $uploadFilename = basename($_FILES['file1']['name']);
+        $saved_filename = $upload_dir . $uploadFilename;
+        move_uploaded_file($_FILES['file1']['tmp_name'], $saved_filename);
+        $ups = new AddressDataStore($saved_filename);
+        $address_uploaded = $ups->read_address_book();
+        $address_book = array_merge($address_book, $address_uploaded);
+        $ads->write_address_book($address_book);
+    }
 }
 
 ?>
@@ -113,6 +128,15 @@ if(!empty($_POST)){
 		<p>
 			<button type="submit">Submit Informaition</button>
 		</p>
+	</form>
+	<form method="POST" enctype="multipart/form-data" action="address_book.php">
+			<p>
+				<label for="file1">File to upload: </label>
+				<input type="file" id="file1" name="file1">
+			</p>
+			<p>
+				<input type="submit" value="Upload">
+			</p>
 	</form>
 
 </body>
