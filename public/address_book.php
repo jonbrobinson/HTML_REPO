@@ -1,7 +1,7 @@
 <?php
 
 $address_book = [];
-$errorMessage = "";
+$error_message = '';
 
 class AddressDataStore {
 
@@ -53,7 +53,7 @@ if(!empty($_POST)){
 		$address_book[] = $new_address;
 		$ads->write_address_book($address_book);
 	} else{
-		$error_message = "Error: Please Complete All Required fields";
+		$error_message = 'Error: Please Complete All Required fields';
 	}
 }
 if (count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
@@ -71,6 +71,10 @@ if (count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
         $ads->write_address_book($address_book);
     }
 }
+if(!empty($_GET)){
+	unset($address_book[$_GET['remove']]);
+	$ads->write_address_book($address_book);
+}
 
 ?>
 
@@ -84,21 +88,22 @@ if (count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
 		<h2><?= $error_message; ?></h2>
 	<? endif; ?>
 	<table border="1">
-			<tr>
-				<th>Name</th>
-				<th>Address</th>
-				<th>City</th>
-				<th>State</th>
-				<th>Zipcode</th>
-				<th>Phone</th>
-			</tr>
-			<? foreach ($address_book as $key => $rows) :?>
-				<tr>
-					<? foreach ($rows as $column) :?>
-						 <td><?= htmlspecialchars($column); ?></td>
-					<? endforeach; ?>
-				</tr>
+		<tr>
+			<th>Name</th>
+			<th>Address</th>
+			<th>City</th>
+			<th>State</th>
+			<th>Zipcode</th>
+			<th>Phone</th>
+		</tr>
+		<? foreach ($address_book as $key => $rows) :?>
+		<tr>
+			<? foreach ($rows as $column) :?>
+				 <td><?= htmlspecialchars($column); ?></td>
 			<? endforeach; ?>
+				<td><?= "<a href=\"address_book.php?remove={$key}\">Remove</a>"; ?></td>
+		</tr>
+		<? endforeach; ?>
 	</table>
 	<form method="POST">
 		<p>
@@ -138,6 +143,5 @@ if (count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
 				<input type="submit" value="Upload">
 			</p>
 	</form>
-
 </body>
 </html>
