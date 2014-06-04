@@ -3,39 +3,7 @@
 $address_book = [];
 $error_message = '';
 
-class AddressDataStore {
-
-    public $filename = '';
-
-    public function __construct($filename){
-    	$this->filename = $filename;
-    }
-
-    public function read_address_book()
-    {
-        // Code to read file $this->filename
-		$address_book = [];
-		$handle = fopen($this->filename, 'r');
-		while(!feof($handle)){
-			$row = fgetcsv($handle);
-			if(is_array($row)){
-				$address_book[] = $row;
-			}
-		}
-		fclose($handle);
-		return $address_book;
-	}
-
-    public function write_address_book($contacts){
-
-        $handle = fopen($this->filename, 'w');
-		foreach ($contacts as $fields){
-			fputcsv($handle,$fields);
-		}
-		fclose($handle);
-    }
-
-}
+include('classes/address_data_store.php');
 
 $ads = new AddressDataStore('address_book.csv');
 
@@ -65,6 +33,8 @@ if (count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
         $uploadFilename = basename($_FILES['file1']['name']);
         $saved_filename = $upload_dir . $uploadFilename;
         move_uploaded_file($_FILES['file1']['tmp_name'], $saved_filename);
+
+        // merge with existing  list
         $ups = new AddressDataStore($saved_filename);
         $address_uploaded = $ups->read_address_book();
         $address_book = array_merge($address_book, $address_uploaded);
@@ -95,11 +65,12 @@ if(!empty($_GET)){
 			<th>State</th>
 			<th>Zipcode</th>
 			<th>Phone</th>
+			<th>Delete</th>
 		</tr>
 		<? foreach ($address_book as $key => $rows) :?>
 		<tr>
 			<? foreach ($rows as $column) :?>
-				 <td><?= htmlspecialchars($column); ?></td>
+				<td><?= htmlspecialchars($column); ?></td>
 			<? endforeach; ?>
 				<td><?= "<a href=\"address_book.php?remove={$key}\">Remove</a>"; ?></td>
 		</tr>
