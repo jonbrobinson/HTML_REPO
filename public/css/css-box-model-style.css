@@ -1,0 +1,36 @@
+.box {
+	height: 72px;
+	width: 172;
+	border: 1px solid black;
+	padding-top: 12px;
+	padding-left: 12px;
+	margin-bottom: 10px;
+	font-weight: bold;
+	color: white;
+}
+
+#red {
+	background-color: red;
+	margin-left: 30px;
+}
+
+#orange {
+	background-color: orange;
+	margin-left: 60px;
+}
+#yellow {
+	background-color: yellow;
+	margin-left: 90px;
+}
+#green {
+	background-color: green;
+	margin-left: 120px;
+}
+#blue {
+	background-color: blue;
+	margin-left: 150px;
+}
+#purple {
+	background-color: purple;
+	margin-left: 180px;
+}
