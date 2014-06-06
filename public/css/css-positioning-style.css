@@ -1,0 +1,55 @@
+.box {
+	height: 75px;
+	width: 75;
+	border: 1px solid black;
+	padding: 10px;
+	margin-bottom: 10px;
+	font-weight: bold;
+	color: white;
+	position: relative;
+}
+
+.logo{
+	position: absolute;
+	bottom: 90px;
+	left: 80px;
+}
+
+#red {
+	background-color: red;
+	float:left;
+	margin-right: 75px;
+	margin-top: 30px;
+}
+
+#orange {
+	background-color: orange;
+	float:left;
+	margin-right: 75px;
+	margin-top: 30px;
+}
+#yellow {
+	background-color: yellow;
+	float: left;
+	margin-right: 75px;
+	margin-top: 30px;
+}
+#green {
+	background-color: green;
+	clear: left;
+	float: left;
+	margin-right: 75px;
+	margin-top: 30px;
+}
+#blue {
+	background-color: blue;
+	float: left;
+	margin-right: 75px;
+	margin-top: 30px;
+}
+#purple {
+	background-color: purple;
+	float: left;
+	margin-right: 75px;
+	margin-top: 30px;
+}
