@@ -5,6 +5,8 @@ in a directory named "css" in the web root
 */
 
 .fancy-header {
+
     color: blue;
+    font: minion;
     text-decoration: underline;
 }
