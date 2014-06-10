@@ -15,29 +15,74 @@
     <h2 id="sub-header">Hello Again.</h2>
     <p class="sub-paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
+    <button id="btn1">Java is Cool</button>
+    <button id="btn2">Blue Please</button>
+    <button id="btn3">Shades of Grey</button>
+    <button id="btn4">Mission Accomplished</button>
+
     <script>
 
+        var btn1 = document.getElementById('btn1');
+
+        var JavaCool = function(event){
+            // todo: get the main header element by id
+            var mainHeader = document.getElementById('main-header');
+            mainHeader.innerHTML = "JavaScript is Cool";
+        }
+
+        btn1.addEventListener('click', JavaCool);
+
         // todo: get the main header element by id
-        // var mainHeader = ;
+        // var mainHeader = document.getElementById('main-header');
 
         // todo: set inner html of mainHeader to "JavaScript is Cool"
+        // mainHeader.innerHTML = "JavaScript is Cool";
 
-        // todo: get the sub header element by id
-        // var subHeader = ;
+        var btn2 = document.getElementById('btn2')
 
-        // todo: set the text color of subHeader to blue
+        var MakeBlue = function (event){
+             // todo: get the sub header element by id
+            var subHeader = document.getElementById('sub-header');
 
-        // todo: get all list items
-        // var listItems = ;
+            // todo: set the text color of subHeader to blue
+            subHeader.style['color'] = 'blue';
+        }
 
-        // todo: set text color on every other list item to grey
-        // todo: set text color of li with dbid = 1 to blue
+        btn2.addEventListener('click',MakeBlue);
 
-        // todo: get all elements with class name sub-paragraph
-        // var subParagraphs = ;
+        var btn3 = document.getElementById('btn3')
 
-        // todo: change the text in the first sub paragraph to "Mission Accomplished!"
+        var ShadesOfGrey = function(event){
+            // todo: get all list items
+            var listItems = document.getElementsByTagName('li');
 
+            // todo: set text color on every other list item to grey
+            for(i = 0; i < listItems.length;i++){
+                if (i % 2 == 0){
+                listItems[i].style['color'] = 'grey';
+                }
+                var dbid = listItems[i].attributes['data-dbid'].value;
+
+                // todo: set text color of li with dbid = 1 to blue
+                if(dbid == 1){
+                    listItems[i].style['color'] = "blue";
+                }
+            }
+        }
+
+        btn3.addEventListener('click',ShadesOfGrey);
+
+        var MissAcc = function(event){
+            var btn4 = document.getElementById('btn4')
+
+            // todo: get all elements with class name sub-paragraph
+            var subParagraph = document.getElementsByClassName('sub-paragraph');
+
+            // todo: change the text in the first sub paragraph to "Mission Accomplished!"
+            subParagraph[0].innerHTML = "Mission Accomplished";
+        }
+
+        btn4.addEventListener('click',MissAcc);
     </script>
 
 </body>
