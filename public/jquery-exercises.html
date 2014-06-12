@@ -1,0 +1,39 @@
+<html>
+<head>
+	<script src="/js/jquery.js"></script>
+	<title></title>
+</head>
+<body>
+	<h1 class="important">Test Header</h1>
+	<p id="non-important">
+		This is a test Paragraph.
+	</p>
+	<p id="non-important">
+		This is a test Paragraph 2.
+	</p>
+	<ul>
+		<li class="important">Item 1</li>
+		<li class="list">Item 2</li>
+		<li class="list">Item 3</li>
+	</ul>
+	<div class="divider">This is a Div</div>
+	<script>
+		$('h1').click(function(){
+			$(this).css('background-color', '#FF0');
+		});
+		$('p').dblclick(function (){
+			$(this).css('font-size', '18px');
+		})
+
+		var hoverIn = function(){
+			$(this).css('color', 'red');
+		};
+
+		var hoverOut = function(){
+			$(this).css('color', 'black');
+		};
+
+		$('li').hover(hoverIn,hoverOut);
+	</script>
+</body>
+</html>
