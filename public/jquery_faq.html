@@ -1,0 +1,91 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	.invisible{
+		display: none
+	}
+	dfn {
+		color: #ABB009;
+		padding: 1px;
+		font-family: helectiva;
+		font-weight: bold;
+	}
+	</style>
+	<script src="/js/jquery.js"></script>
+	<script type="text/javascript">
+		$('document').ready(function() {
+		    $('#faqToggle').click(function(event) {
+		        event.preventDefault();
+		        $('dd').toggleClass('invisible');
+		    });
+		    $('ul').each(function(){
+		    	$(this).children().first().css('font-weight', 'bold');
+		    });
+			$('li').click(function(event){
+				$(this).parent().addClass('invisible')
+
+			});
+			$('h3').click(function(event){
+				$('ul').each(function(event){
+					$(this).removeClass('invisible')
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<dl>
+		<dt><dfn>10 FAQ National Parks</dfn></dt>
+		<dt>What government agency oversees the National Park Service?</dt>
+			<dd class="invisible">The National Park Service is a bureau of the Department of the Interior. Directly overseeing its operation is the Department's Assistant Secretary for Fish and Wildlife and Parks</dd>
+		<dt>How old is the national park system?</dt>
+			<dd class="invisible">The National Park Service was created by an Act signed by President Woodrow Wilson on August 25, 1916. Yellowstone National Park was established by an Act signed by President Ulysses S. Grant on March 1, 1872, as the nation's first national park. View the national park system Timeline.</dd>
+		<dt>How many areas are there in the national park system?</dt>
+			<dd class="invisible">The national park system comprises 401 areas covering more than 84 million acres in every state, the District of Columbia, American Samoa, Guam, Puerto Rico, and the Virgin Islands. These areas include national parks, mo<numents, battlefields, military parks, historical parks, historic sites, lakeshores, seashores, recreation areas, scenic rivers and trails, and the White House. Learn more about national park designations. See the complete list of National Park Service sites and affiliated areas by type and number.</dd>
+		<dt>What is the largest/smallest national park site?</dt>
+			<dd class="invisible">gell-St. Elias National Park and Preserve, AK - 13.2 million acres<br>
+				Smallest - Thaddeus Kosciuszko National Memorial, PA - 0.02 acres</dd>
+		<dt>How many employees are in the National Park Service?</dt>
+			<dd class="invisible">Permanent, Temporary, and Seasonal - Approximately 22,000 diverse professionals<br>
+			Volunteers in Parks - 221,000</dd>
+		<dt>How many people visit the national parks?</dt>
+			<dd class="invisible">Total recreation visitors to the national parks in 2011: 278,939,216<br>
+			Visit the Public Use Statistics for more detailed information.</dd>
+		<dt>What is the National Park Service budget?</dt>
+			<dd class="invisible">FY 2012 Enacted - $2.98 billion <br>
+			FY 2013 Request - $2.99 billion</dd>
+		<dt>How do I obtain a park pass?</dt>
+			<dd class="invisible">Visitors can obtain park passes by visiting their nearest park site. Most sites have passes available, however it is recommended to call a park prior to your visit. Learn more about the America the Beautiful - National Parks and Federal Recreation Lands Pass.</dd>
+		<dt>How do I make reservations for camping/lodging in national parks?</dt>
+			<dd class="invisible">For campground reservations go here. Not all parks participate in this service, many campgrounds are first come, first served. For more information on specific camping and lodging services offered at the park(s) of your interest, please check their homepage by using our search feature.</dd>
+		<dt>What do I need to know about driving off road in national parks?</dt>
+			<dd class="invisible">Before you head out, check with the national parks that you intend to visit. In many national parks, off-road driving is illegal. Where off-road driving is allowed, the National Park Service regulates it.</dd>
+	</dl>
+	<p><a href="#" id="faqToggle">Click Here To Toggle</a></p>
+	<h3>National Parks</h3>
+	<ul>
+		<li>Archies</li>
+		<li>Badlands</li>
+		<li>Carlsbad Cavens</li>
+		<li>Denali</li>
+		<li>Everglades</li>
+	</ul>
+	<h3>State Parks of Texas</h3>
+	<ul>
+		<li>Abiline</li>
+		<li>Big Bend</li>
+		<li>Choke Canyon</li>
+		<li>Davis Mountains</li>
+		<li>Enchanted Rock</li>
+	</ul>
+	<h3>Skate Parks of Texas</h3>
+	<ul>
+		<li>Bear Branch</li>
+		<li>Cliff Tuttle</li>
+		<li>James Driver</li>
+		<li>Lively Point</li>
+		<li>Watonga</li>
+	</ul>
+</body>
+</html>
