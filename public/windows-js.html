@@ -6,9 +6,9 @@
 
     <h2>Autosaving Text Input</h2>
     <textarea rows="10" cols="60" id="important"></textarea>
-
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script>
-    var timeoutID = null;
+        var timeoutID = null;
 
         function save() {
             alert('Saved!');
@@ -22,50 +22,13 @@
             // the last key up event. If a new key up event occurs,
             // you need to cancel the existing timer and set a new one.
 
-            clearTimeout(timeoutID);  
-            timeoutID = setTimeout(function()){
+            clearTimeout(timeoutID);
+            timeoutID = setTimeout(function(){
                 save()
-            }, 5000;
+            }, 5000);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        }
-
-        // don't modify the line below
-        // this causes the autosave function to be called whenever
-        // a key up event occurs in the textarea
-        // we will learn about events in the DOM lessons
-        var textarea = document.getElementById('important');
-        textarea.addEventListener('keyup', autosave, false);
+        $('#important').on('keyup', autosave);
 
     </script>
 
