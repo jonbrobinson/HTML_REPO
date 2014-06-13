@@ -1,0 +1,59 @@
+#box1{
+
+}
+
+#box2{
+
+}
+
+#box3{
+
+}
+
+#box4{
+
+}
+
+#box5{
+
+}
+
+#box6{
+
+}
+
+#box7{
+
+}
+
+#box8{
+
+}
+
+#box9{
+
+}
+
+#container{
+	border: 1px solid black;
+	height: 600px;
+	margin: auto;
+	width: 600px;
+}
+
+.box {
+	border: 1px solid red;
+	width: 198px;
+	height: 198px;
+	float: left;
+/*	background-image: url('../img/howard_face.jpg') ;
+*/}
+
+.free_throw {
+	display: none;
+}
+
+body {
+	background-image: url('../img/court.jpeg');
+	background-size: 100% auto;
+}
