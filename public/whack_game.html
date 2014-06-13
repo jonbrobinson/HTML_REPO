@@ -1,0 +1,82 @@
+<html>
+<head>
+	<title>Whack a Parker</title>
+	<link rel="stylesheet" type="text/css" href="css/whack_game.css">
+</head>
+<body>
+	<h1>whack a mole<h1>
+		<h2>Score: 0</h2>
+	<div id="container">
+		<div id="box1" class="box">
+			<img src="../img/dwight-howard-free-throw.jpg" class="free_throw">
+		</div>
+		<div id="box2" class="box">
+			<img src="../img/dwight-howard-free-throw.jpg" class="free_throw">
+
+		</div>
+		<div id="box3" class="box">
+			<img src="../img/dwight-howard-free-throw.jpg" class="free_throw">
+
+		</div>
+		<div id="box4" class="box">
+			<img src="../img/dwight-howard-free-throw.jpg" class="free_throw">
+
+		</div>
+		<div id="box5" class="box">
+			<img src="../img/dwight-howard-free-throw.jpg" class="free_throw">
+
+		</div>
+		<div id="box6" class="box">
+			<img src="../img/dwight-howard-free-throw.jpg" class="free_throw">
+
+		</div>
+		<div id="box7" class="box">
+			<img src="../img/dwight-howard-free-throw.jpg" class="free_throw">
+
+		</div>
+		<div id="box8" class="box">
+			<img src="../img/dwight-howard-free-throw.jpg" class="free_throw">
+
+		</div>
+		<div id="box9" class="box">
+			<img src="../img/dwight-howard-free-throw.jpg" class="free_throw">
+
+		</div>
+	</div>
+	<script src="/js/jquery.js"></script>
+
+	<script>
+		//create function to grab  random int from class
+		var free_throw = $('.free_throw');
+
+		function getRandomInt(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+		var count = 0;
+		var max = 10;
+		var interval = 3000; // interval time in milliseconds
+
+		var intervalId = setInterval(function () {
+			if (count >= max) {
+				clearInterval(intervalId);
+				console.log('All done');
+			} else {
+				count++;
+				var number = getRandomInt(0, 8);
+				var random_cell = free_throw[number];
+				$(random_cell).fadeIn(1000);
+				$(random_cell).fadeOut(1000);
+
+			}
+		}, interval);
+
+		free_throw.click(function(){
+			score add one ++
+			update html of h2 to shore added one
+			console.log('you got it');
+		});
+
+	</script>
+</body>
+</html>
