@@ -1,11 +1,14 @@
 <html>
 <head>
-	<title>Whack a Parker</title>
+	<title>Whack a Howard</title>
 	<link rel="stylesheet" type="text/css" href="css/whack_game.css">
 </head>
 <body>
-	<h1>whack a mole<h1>
-		<h2>Score: 0</h2>
+	<head>
+		<h1>whack a mole</h1>
+		<h2>Score: 0 &nbsp &nbsp &nbsp Timer: &nbsp<span id="timer">30</span></h2>
+		<h1><span id="start_game">Start</span></h1>
+	</head>
 	<div id="container">
 		<div id="box1" class="box">
 			<img src="../img/dwight-howard-free-throw.jpg" class="free_throw">
@@ -46,36 +49,62 @@
 	<script src="/js/jquery.js"></script>
 
 	<script>
-		//create function to grab  random int from class
+
 		var free_throw = $('.free_throw');
 
+		//create function to grab  random int from  img class
 		function getRandomInt(min, max) {
 			return Math.floor(Math.random() * (max - min + 1)) + min;
 		}
 
 		var count = 0;
-		var max = 10;
-		var interval = 3000; // interval time in milliseconds
+		var max = 20;
+		var interval = 2000; // interval time in milliseconds
+		var score = 0;
+		var time = 30
 
-		var intervalId = setInterval(function () {
-			if (count >= max) {
-				clearInterval(intervalId);
-				console.log('All done');
-			} else {
-				count++;
-				var number = getRandomInt(0, 8);
-				var random_cell = free_throw[number];
-				$(random_cell).fadeIn(1000);
-				$(random_cell).fadeOut(1000);
+		$('#start_game').one("click", function(){
+			var intervalId = setInterval(function() {
+					if (count >= max) {
+						clearInterval(intervalId);
+						console.log('All done');
+					} else if (score == 5) {
+						clearInterval(intervalId);
+						alert("Next level");
+					} else {
+						count++;
+						var number = getRandomInt(0, 8);
+						var random_cell = free_throw[number];
+						$(random_cell).fadeIn(500).fadeOut(500);
+					}
+			}, interval);
 
-			}
-		}, interval);
+
+		});
+
+		// Create a timer to countdown
+		var timerId = setInterval(function () {
+				if (time > 0) {
+					--time;
+					$('#timer').html(time);
+				} else {
+					// alert('Shot Clock Violation');
+					clearInterval(timerId);
+				}
+			}, 1000);
 
 		free_throw.click(function(){
-			score add one ++
-			update html of h2 to shore added one
-			console.log('you got it');
+			// score add one ++
+			$(this).hide();
+			score++;
+			if(score > 0 ){
+				$('h2').html("Score: " + (score *10) + "    Timer: " + timerId);
+			}
+			// update html of h2 to shore added one
+			console.log('score');
 		});
+
+
 
 	</script>
 </body>
