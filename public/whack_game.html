@@ -5,8 +5,8 @@
 </head>
 <body>
 	<head>
-		<h1>whack a mole</h1>
-		<h2>Score: 0 &nbsp &nbsp &nbsp Timer: &nbsp<span id="timer">30</span></h2>
+		<h1>Whack a Howard</h1>
+		<h2><span id="run_score">Score: 0 </span>&nbsp &nbsp &nbsp Timer: &nbsp<span id="countdown">30</span></h2>
 		<h1><span id="start_game">Start</span></h1>
 	</head>
 	<div id="container">
@@ -63,7 +63,22 @@
 		var score = 0;
 		var time = 30
 
+		// Create a timer to countdown
+		function timerId (){
+			return setInterval(function () {
+				if (time > 0) {
+					--time;
+					$('#countdown').html(time);
+				} else {
+					// alert('Shot Clock Violation');
+					clearInterval(timerId);
+				}
+			}, 1000);
+		}
+
+
 		$('#start_game').one("click", function(){
+			var timer = timerId();
 			var intervalId = setInterval(function() {
 					if (count >= max) {
 						clearInterval(intervalId);
@@ -78,31 +93,19 @@
 						$(random_cell).fadeIn(500).fadeOut(500);
 					}
 			}, interval);
-
-
 		});
 
-		// Create a timer to countdown
-		var timerId = setInterval(function () {
-				if (time > 0) {
-					--time;
-					$('#timer').html(time);
-				} else {
-					// alert('Shot Clock Violation');
-					clearInterval(timerId);
-				}
-			}, 1000);
-
+		//Create ability to add or subtract points
 		free_throw.click(function(){
 			// score add one ++
 			$(this).hide();
 			score++;
 			if(score > 0 ){
-				$('h2').html("Score: " + (score *10) + "    Timer: " + timerId);
+				$('#run_score').html("Score: " + (score *10));
 			}
-			// update html of h2 to shore added one
-			console.log('score');
 		});
+
+	;
 
 
 
