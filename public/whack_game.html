@@ -6,7 +6,7 @@
 <body>
 	<head>
 		<h1>Whack a Howard</h1>
-		<h2><span id="run_score">Score: 0 </span>&nbsp &nbsp &nbsp Timer: &nbsp<span id="countdown">30</span></h2>
+		<h2><span id="run_score">Score: 0 </span>&nbsp &nbsp &nbsp Shot Clock: &nbsp<span id="countdown">24</span></h2>
 		<h1><span id="start_game">Start</span></h1>
 	</head>
 	<div id="container">
@@ -49,65 +49,73 @@
 	<script src="/js/jquery.js"></script>
 
 	<script>
-
-		var free_throw = $('.free_throw');
+		// var free_throw = $('.free_throw');
+		var count = 0;
+		var max = 20;
+		var interval = 2000; // interval time in milliseconds
+		var score = 0;
+		var time = 24;
 
 		//create function to grab  random int from  img class
 		function getRandomInt(min, max) {
 			return Math.floor(Math.random() * (max - min + 1)) + min;
 		}
 
-		var count = 0;
-		var max = 20;
-		var interval = 2000; // interval time in milliseconds
-		var score = 0;
-		var time = 30
+		$('#start_game').one("click", function(){
 
-		// Create a timer to countdown
-		function timerId (){
-			return setInterval(function () {
+			// Create a timer to countdown
+			var timer = setInterval(function () {
 				if (time > 0) {
 					--time;
 					$('#countdown').html(time);
 				} else {
-					// alert('Shot Clock Violation');
-					clearInterval(timerId);
+					clearInterval(timer);
+					clearInterval(show_pics);
+					alert('Shot Clock Violation');
 				}
 			}, 1000);
-		}
 
-
-		$('#start_game').one("click", function(){
-			var timer = timerId();
-			var intervalId = setInterval(function() {
+			//Function to count number of Picture Iterations
+			var show_pics = setInterval(function() {
 					if (count >= max) {
-						clearInterval(intervalId);
+						clearInterval(show_pics);
 						console.log('All done');
-					} else if (score == 5) {
-						clearInterval(intervalId);
-						alert("Next level");
 					} else {
 						count++;
 						var number = getRandomInt(0, 8);
-						var random_cell = free_throw[number];
+						var random_cell = $('.free_throw')[number];
 						$(random_cell).fadeIn(500).fadeOut(500);
 					}
 			}, interval);
 		});
 
 		//Create ability to add or subtract points
-		free_throw.click(function(){
-			// score add one ++
-			$(this).hide();
-			score++;
-			if(score > 0 ){
-				$('#run_score').html("Score: " + (score *10));
-			}
+
+		// $('.free_throw').click(function(){
+		// 	// score add one ++
+		// 	console.log(this);
+		// 	$(this).hide();
+		// 	score += 2;
+		// 	if(score > 0 ){
+		// 		$('#run_score').html("Score: " + score);
+		// 	}
+		// });
+		
+		$('.box').click(function (){
+			// substract stuff
+
+			// watch other click
+			$('.free_throw').click(function(){
+				// score add one ++
+				console.log(this);
+				$(this).hide();
+				score += 2;
+				if(score > 0 ){
+					$('#run_score').html("Score: " + score);
+				}
+			});
+			// console.log('we got here');
 		});
-
-	;
-
-
 
 	</script>
 </body>

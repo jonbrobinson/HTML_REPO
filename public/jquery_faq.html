@@ -11,25 +11,22 @@
 		font-family: helectiva;
 		font-weight: bold;
 	}
+
+	h3:hover{
+		cursor: pointer;
+	}
 	</style>
 	<script src="/js/jquery.js"></script>
 	<script type="text/javascript">
 		$('document').ready(function() {
 		    $('#faqToggle').click(function(event) {
-		        event.preventDefault();
-		        $('dd').toggleClass('invisible');
+		        $('dd').toggle();
 		    });
 		    $('ul').each(function(){
 		    	$(this).children().first().css('font-weight', 'bold');
 		    });
-			$('li').click(function(event){
-				$(this).parent().addClass('invisible')
-
-			});
 			$('h3').click(function(event){
-				$('ul').each(function(event){
-					$(this).removeClass('invisible')
-				});
+				$(this).next().toggle();
 			});
 		});
 	</script>

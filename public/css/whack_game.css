@@ -1,37 +1,6 @@
-#box1{
-
-}
-
-#box2{
-
-}
-
-#box3{
-
-}
-
-#box4{
-
-}
-
-#box5{
-
-}
-
-#box6{
-
-}
-
-#box7{
-
-}
-
-#box8{
-
-}
-
-#box9{
-
+#Bonus {
+	color: red;
+	font-size: 30px;
 }
 
 #container{
@@ -39,6 +8,16 @@
 	height: 600px;
 	margin: auto;
 	width: 600px;
+}
+
+#start_game {
+	color: blue;
+	cursor: pointer;
+	background-color: white;
+	padding: 5px;
+	box-shadow: 5px 5px 2px #888888;
+	border: 1px solid;
+    border-radius: 25px;
 }
 
 .box {
@@ -56,4 +35,19 @@
 body {
 	background-image: url('../img/court.jpeg');
 	background-size: 100% auto;
+}
+
+head {
+	margin: auto;
+}
+
+h1{
+	color: white;
+	text-align: center;
+
+}
+
+h2 {
+	color: white;
+	text-align: center;
 }
