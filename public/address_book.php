@@ -5,29 +5,35 @@ $error_message = '';
 
 require_once('classes/address_data_store.php');
 
-$ads = new AddressDataStore('address_book.csv');
+$ads = new AddressDataStore('ADDRESS_BOOK.CSV');
 
-$address_book = $ads->read_address_book();
-
-if(!empty($_POST)){
-	if(!empty($_POST['name'])&& !empty($_POST['address'])&& !empty($_POST['city'])&& !empty($_POST['state'])&& !empty($_POST['zipcode'])){
-		$new_address = [
-			$_POST['name'],
-			$_POST['address'],
-			$_POST['city'],
-			$_POST['state'],
-			$_POST['zipcode'],
-			$_POST['phone']
-		];
-		if(empty($new_address[5])){
-			$new_address[5] = "N/A";
+$address_book = $ads->read();
+try {
+	if(!empty($_POST)){
+		if(!empty($_POST['name'])&& !empty($_POST['address'])&& !empty($_POST['city'])&& !empty($_POST['state'])&& !empty($_POST['zipcode'])){
+			$new_address = [
+				$_POST['name'],
+				$_POST['address'],
+				$_POST['city'],
+				$_POST['state'],
+				$_POST['zipcode'],
+				$_POST['phone']
+			];
+			if(empty($new_address[5])){
+				$new_address[5] = "N/A";
+			}
+			foreach ($new_address as $address) {
+				if(strlen($address) > 125){
+					throw new Exception('$addres smust be shorter than 125 characters');
+				}
+			}
+			$address_book[] = $new_address;
+			$ads->write($address_book);
+		} else{
+			$error_message = 'Error: Please Complete All Required fields';
 		}
-		$address_book[] = $new_address;
-		$ads->write_address_book($address_book);
-	} else{
-		$error_message = 'Error: Please Complete All Required fields';
 	}
-}
+
 if (count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
 
     if ($_FILES['file1']["type"] != "text/csv") {
@@ -40,14 +46,16 @@ if (count($_FILES) > 0 && $_FILES['file1']['error'] == 0) {
 
         // merge with existing  list
         $ups = new AddressDataStore($saved_filename);
-        $address_uploaded = $ups->read_address_book();
+        $address_uploaded = $ups->read_csv();
         $address_book = array_merge($address_book, $address_uploaded);
-        $ads->write_address_book($address_book);
+        $ads->write($address_book);
     }
 }
 if(!empty($_GET)){
 	unset($address_book[$_GET['remove']]);
-	$ads->write_address_book($address_book);
+	$ads->write($address_book);
+	header('Location: /address_book.php');
+	exit(0);
 }
 
 ?>
